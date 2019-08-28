@@ -1,0 +1,169 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-header text-center">
+          <h4>Transaction By Account</h4>
+        </div>
+        <div class="card-body">
+          <div class="card-deck">
+            <div class="card">
+              <img src="../../../assets/galery/gl5.jpg" class="card-img-top" alt="transfer">
+              <div class="card-body">
+                <h5 class="card-title">Transfer</h5>
+                <p class="card-text">Make a Transfer</p>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                  data-target="#transferModal">
+                  Transfer
+                </button>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                  data-target="#topuptraderModal">
+                  Topup To trader
+                </button>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#regisAccModal"><em
+                  class="glyphicon glyphicon-plus"></em> Register Account</button>
+              <table class="table table-borderless" style="width: 600px">
+                <thead>
+                  <tr>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Cashtag</th>
+                    <th scope="col">Open Date</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let list of accounts">
+                  <tr>
+                    <th scope="row">{{list.accountNumber}}</th>
+                    <td>{{list.cashtag}}</td>
+                    <td>{{list.openDate | date}}</td>
+                    <td>{{list.balance |currency:"IDR":"Rp. "}}</td>
+                    <td>
+                      <button type="button"  class="btn btn-primary mr-2" (click)="getDataAcc(list)" title="Update"><em
+                          class="glyphicon glyphicon-edit" data-toggle="modal"
+                          data-target="#updateAccModal"></em></button>
+                      <button type="button" (click)="getDataAcc(list)" class="btn btn-primary" title="View"><em
+                          class="glyphicon glyphicon-zoom-in" data-toggle="modal" data-target="#historyByAccModal"></em></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal bd-example-modal-sm" id="regisAccModal"  role="dialog" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Register Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-regis-acc (cobaUpdate)="fungsiOutput($event)"></app-regis-acc>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal bd-example-modal-sm" id="topuptraderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Topup to Trader</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-topup-accto-trader (cobaUpdate)="fungsiOutput($event)"></app-topup-accto-trader>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal bd-example-modal-sm" id="historyByAccModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="margin-bottom: 11px">
+          <div class="card-header text-center">
+            <h4>History Transaction</h4>
+          </div>
+            <div class="card-deck">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id Transaction</th>
+                        <th scope="col">Account Number Credit</th>
+                        <th scope="col">Account Number Debit</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Transaction Type</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Id Bank</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let historyTrans of transs">
+                      <tr>
+                        <th scope="row">{{historyTrans.idTransaction}}</th>
+                        <td>{{historyTrans.accountDebit}}</td>
+                        <td>{{historyTrans.accountCredit}}</td>
+                        <td>{{historyTrans.date | date}}</td>
+                        <td>{{historyTrans.amount}}</td>
+                        <td>{{historyTrans.transactionType.description}}</td>
+                        <td>{{historyTrans.description}}</td>
+                        <td>{{historyTrans.bank.name}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal bd-example-modal-sm" tabindex="-1" id="updateAccModal" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-update-acc [account]="account" (cobaUpdate)="fungsiOutput($event)"></app-update-acc>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-transfer [account]="account" (output)="fungsiOutput($event)"></app-transfer>

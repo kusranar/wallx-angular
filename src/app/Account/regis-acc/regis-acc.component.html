@@ -1,0 +1,15 @@
+<!-- Modal -->
+        <form [formGroup]="regisAccGroup">
+          <div class="form-group">   
+            <div class="col-md-12">
+              <label for="cashtag">Cashtag </label>
+              <input type="text" class="form-control" id="cashtag" formControlName="cashtag" placeholder="@cashtag">
+            </div>
+          </div>  
+          <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+            <button type="button" (click)="regis()" [disabled]="!regisAccGroup.valid" class="btn btn-primary"
+              data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div> 
+        </form>  
+      

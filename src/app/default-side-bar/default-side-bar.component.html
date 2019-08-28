@@ -1,0 +1,98 @@
+<!-- Sidebar Holder -->
+<div class="content">
+  <nav id="sidebar">
+    <ul class="list-unstyled">
+      <div class="sidebar-header text-center">
+            <a href="#profileModal" data-toggle="modal"><img src="../../assets/2139732.jpg" width="100" height="100" class="img-circle" alt="logo" /></a>
+             <h5 *ngIf="customer1">User Name :  {{customer1.idUser.username}}</h5>
+             <h5  *ngIf="customer1">Occupation : {{customer1.occupation}}</h5>
+             <em>click my face for more</em>
+        <div>
+          <button type="button" (click)="logout()" class="btn btn-outline-danger btn-block mr-2">Logout</button>
+        </div>
+      </div>
+      <li>
+        <a routerLink="/cust/dash"><em class="glyphicon glyphicon-home"></em> Dashboard</a>
+      </li>
+      <li>
+        <a routerLink="/acc/home"> <em class="glyphicon glyphicon-briefcase"></em> Account</a>
+      </li>
+      <li>
+        <a routerLink="/wallet/homewall"> <em class="glyphicon glyphicon-briefcase"></em> Wallet</a>
+      </li>
+      <li>
+        <a routerLink="/trader/home"> <em class="glyphicon glyphicon-credit-card"></em> Form Trader </a>
+      </li>
+      <li>
+        <a routerLink="/forex/home"> <em class="glyphicon glyphicon-transfer"></em> Forex</a>
+      </li> 
+    </ul>
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default  navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><img src="../../assets/logo2.png" class="rounded float-right" alt="" style="width: 200px"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="profileModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="margin-bottom: 10px">
+          <div class="card-header text-center">
+            <h4>Profile</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-deck">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Birth Date</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Occupation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"> <span *ngIf="customer1">{{customer1.idUser.username}}</span></th>
+                        <td *ngIf="customer1">{{customer1.firstName}} {{customer1.firstName}}</td>
+                        <td *ngIf="customer1">{{customer1.birthDate | date}}</td>
+                        <td *ngIf="customer1">{{customer1.gender}}</td>
+                        <td *ngIf="customer1">{{customer1.address}}</td>
+                        <td *ngIf="customer1">{{customer1.phone}}</td>
+                        <td *ngIf="customer1">{{customer1.occupation}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

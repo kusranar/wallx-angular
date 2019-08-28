@@ -1,0 +1,86 @@
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="transferModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="transferGroup">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="accountNumber">Choose account</label>
+              <select (click)="listAcc()" [(ngModel)]="accountNumber2" class="form-control" id="accountNumber"
+                name="accountNumber" formControlName="accountNumber">
+                <option *ngFor="let list of accounts" [value]="list.accountNumber">{{list.cashtag}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12 mb-12">
+                <label for="received">Received Account</label>
+                <input type="text" [(ngModel)]="receivedAccount" class="form-control" id="received" name="received"
+                  formControlName="received" placeholder="Account Number">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12 mb-12">
+                <label for="amount">Amount</label>
+                <input type="text" [(ngModel)]="amount" class="form-control" id="amount" formControlName="amount"
+                  placeholder="Amount">
+              </div>
+            </div> 
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="getAccount()" [disabled]="!transferGroup.valid" data-toggle="modal" data-target="#confrimeModal" class="btn btn-primary"
+          data-dismiss="modal">Transfer</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal -->
+<div class="modal   bd-example-modal-sm" id="confrimeModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Account Number</th>
+              <th scope="col">Received Account</th>
+              <th scope="col">Received cashtag</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <th scope="row">{{accountNumber2}}</th>
+              <td>{{receivedAccount}}</td>
+              <td><span *ngIf="account">{{account.cashtag}}</span></td>
+              <td>{{amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="transferTrans()" class="btn btn-primary" data-dismiss="modal">Confrim</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

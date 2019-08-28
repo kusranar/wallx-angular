@@ -1,0 +1,16 @@
+<!-- Modal -->
+
+<form [formGroup]="updateAccGroup" > 
+    <div class="form-group">
+      <div class="col-md-12">
+        <label for="cashtag">Change Cashtag </label>
+        <input type="text" class="form-control" id="cashtag" formControlName="cashtag" placeholder="@cashtag">
+      </div>
+    </div>  
+    <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+      <button type="button"  [disabled]="!updateAccGroup.valid" class="btn btn-primary"
+        data-dismiss="modal">Update</button> 
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    </div> 
+  </form>
+ 

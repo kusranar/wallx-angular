@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="transToAcc" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Regis Trader</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body"> 
+        <form [formGroup]="transToAccGroup">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="accountNumber">Account Number</label>
+              <input type="text" class="form-control" id="accountNumber" formControlName="accountNumber" placeholder="Account Number">
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-12">
+                <label for="amount">Amount</label>
+                <input type="text" class="form-control" id="amount" formControlName="amount" placeholder="amount">
+              </div>
+            </div>
+        </form>  
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="transferTradeToAcc()" [disabled]="!transToAccGroup.valid"
+          class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

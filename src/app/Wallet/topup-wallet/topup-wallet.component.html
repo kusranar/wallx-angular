@@ -1,0 +1,75 @@
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="topupModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="exampleModalLabel">Topup Wallet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span> 
+        </button>
+      </div>
+      <div class="modal-body"> 
+        <form [formGroup]="topUpGroup">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="sel1">Choose account</label>
+              <select class="form-control" [(ngModel)]="accountNumber" (change)="listWalletAccById()" id="accountNumber" name="accountNumber" formControlName="accountNumber">
+                <option *ngFor="let list of wallet" [value]="list.account.accountNumber">{{list.account.cashtag}}</option>
+              </select>
+            </div>
+          </div> 
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="amount">Amount</label>
+              <input type="text" class="form-control" [(ngModel)]="amount" id="amount" formControlName="amount" placeholder="Amount">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" [disabled]="!topUpGroup.valid" data-toggle="modal" data-target="#confrimeModal" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="confrimeModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Account Number</th>
+              <th scope="col">Received Wallet</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{accountNumber}}</th>
+              <td><span *ngIf="wallettype">{{wallettype.walletType.description}}</span></td>
+              <td>{{amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="topUPTrans()" class="btn btn-primary" data-dismiss="modal">Confrim</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="card" style="margin-bottom: 10px">
+          <div class="card-header text-center">
+            <h4>FORM TRADER</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <div *ngIf=false class="form-group">
+                  <label for="sel1">Currency</label>
+                  <select class="form-control" id="sel1">
+                    <option>Dollar (USD)</option>
+                    <option>Rupiah (IDR)</option>
+                  </select>
+                </div>
+                <div class="card">
+                  <h5 class="card-header text-center">Currency History</h5>
+                  <div class="card-body"> 
+                    <form>
+                      <div class="form-group">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Currency</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Sell</th>
+                              <th scope="col">Buy</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngFor="let list of cur">
+                            <tr>
+                              <th scope="row">{{list.description}}</th>
+                              <td>{{list.date | date}}</td>
+                              <td>{{list.buy | currency : "IDR":"Rp. "}}</td>
+                              <td>{{list.sell | currency : "IDR":"Rp. "}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <br>
+                    </form>
+                  </div>
+                </div>
+                <br>
+                <div class="card">
+                  <h5 class="card-header text-center">Trading</h5>
+                  <div class="card-body">
+                    <form>
+                      <div class="form-group">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">B/S</th>
+                              <th scope="col">Transaction Date</th>
+                              <th scope="col">Currency</th>
+                              <th scope="col">Rate</th>
+                              <th scope="col">Amount</th>
+                              <th scope="col">AAS</th>
+                              <th scope="col">P/L</th>
+                              <th scope="col">Potensial P/L</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngFor="let list of transForex">
+                            <tr>
+                              <th scope="row">{{list.buySell}}</th>
+                              <td>{{list.date | date}}</td>
+                              <td>{{list.currency.description}}</td>
+                              <td>{{list.rate | currency : "IDR":"Rp. "}}</td>
+                              <td>{{list.amount | currency : "USD":"$. "}}</td>
+                              <td>{{list.amountAfterSell | currency : "USD":"$. "}}</td>
+                              <td>{{list.pointLose | currency : "IDR":"Rp. "}}</td>
+                              <td>{{list.potensialPoinLose | currency : "IDR":"Rp. "}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <br>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4 mt-4">
+                <div class="card">
+                  <div class="card-body">
+                    <form [formGroup]="buy">
+                      <div class="form-group"> 
+                        <label for="forexBuy">Input Amount</label><br/>
+                        <label>Dollar (USD)</label>
+                        <input formControlName="forexBuy" name="forexBuy" type="text" class="form-control" id="forexBuy"
+                          placeholder="Amount">
+                      </div>
+                    </form> 
+                    <button (click)="postBuy()" type="button" class="btn btn-success btn-lg btn-block">Buy</button>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="sell">
+                      <div class="form-group">
+                        <label for="formGroupExampleInput">Input Amount</label><br/>
+                        <label>Dollar (USD)</label>
+                        <input formControlName="forexSell" name="forexSell" type="text" class="form-control" id="sell" placeholder="Amount">
+                      </div>
+                    </form>
+                    <button (click)="postSell()" type="button" class="btn btn-danger btn-lg btn-block">Sell</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

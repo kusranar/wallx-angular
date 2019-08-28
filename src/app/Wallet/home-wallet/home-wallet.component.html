@@ -1,0 +1,88 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-header text-center">
+          <h4>Transaction By Wallet</h4>
+        </div>
+        <div class="card-body">
+          <div class="card-deck">
+            <div class="card">
+              <img src="../../../assets/galery/gl1.jpg" class="card-img-top" alt="transfer">
+              <div class="card-body">
+                <h5 class="card-title">Topup Wallet</h5>
+                <p class="card-text">Make a Topup</p>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#topupModal">
+                  Topup
+                </button>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#regisWallModal"><em
+                  class="glyphicon glyphicon-plus"></em> Register Wallet</button>
+              <table class="table table-borderless" style="width: 600px">
+                <thead>
+                  <tr>
+                    <th scope="col">Id Wallet</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Cashtag</th>
+                    <th scope="col">Wallet Type</th>
+                    <th scope="col">Open Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let list of wallets">
+                  <tr>
+                    <th scope="row">{{list.idWallet}}</th>
+                    <td>{{list.account.accountNumber}}</td>
+                    <td>{{list.account.cashtag}}</td>
+                    <td>{{list.walletType.description}}</td> 
+                    <td>{{list.openDate | date}}</td>
+                    <td> <button type="button" (click)="getDataWall(list)" class="btn btn-primary" title="Update"><em
+                          class="glyphicon glyphicon-edit" data-toggle="modal"
+                          data-target="#topupWallModal"></em></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-regis-wall (output)="fungsiOutput($event)"></app-regis-wall>
+<app-topup-wallet></app-topup-wallet>
+
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="topupWallModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Wallet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateWallGroup">
+            <div class="col-md-12">
+                <label for="idWalletType">Choose Wallet</label>
+                <select class="form-control" id="idWalletType" name="idWalletType" formControlName="idWalletType">
+                  <option>--- Wallet Type ---</option> 
+                  <option *ngFor="let listwal of walletTypes" [value]="listwal.idWalletType">{{listwal.description}}</option>
+                </select>
+              </div>
+          <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+            <button type="button" (click)="update()" [disabled]="!updateWallGroup.valid" class="btn btn-primary"
+              data-dismiss="modal">Update</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

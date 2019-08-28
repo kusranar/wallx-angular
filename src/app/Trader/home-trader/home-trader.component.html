@@ -1,0 +1,108 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="card" style="margin-bottom: 10px">
+          <div class="card-header text-center">
+            <h4>FORM TRADER</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div>
+                  <div class="col-sm-6" *ngIf="idBe">
+                    <button type="button" (click)="closeForex()" class="btn btn-primary btn mb-2 mr-2"><em class="glyphicon glyphicon-remove"></em> Close Forex</button>
+                  </div>
+                </div> 
+                <table class="table table-hover" *ngIf="idBe">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id Outstanding</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Outstanding</th>
+                      <th scope="col">Id Trader</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listadm of outstand">
+                    <tr>
+                      <th scope="row">{{listadm.idOutstanding}}</th>
+                      <td>{{listadm.date | date}}</td>
+                      <td>{{listadm.outstandingData}}</td>
+                      <td>{{listadm.idTrader.idTrader}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table class="table table-hover" *ngIf="id">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id Outstanding</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Outstanding</th>
+                        <th scope="col">Id Trader</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let listUser of outstandidt">
+                      <tr>
+                        <th scope="row">{{listUser.idOutstanding}}</th>
+                        <td>{{listUser.date | date}}</td>
+                        <td>{{listUser.outstandingData}}</td>
+                        <td>{{listUser.idTrader.idTrader}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+              <div class="col-sm-6" *ngIf="id">
+                <button type="button" class="btn btn-primary btn mb-2 mr-2" data-toggle="modal"
+                  data-target="#regisTrader"><em class="glyphicon glyphicon-plus"></em> Register Trader</button>
+                <button type="button" class="btn btn-primary btn mb-2 mr-2" data-toggle="modal"
+                  data-target="#transToAcc"><em class="glyphicon glyphicon-transfer"></em> Transfer Trader To
+                  Account</button>
+                <button (click)="getTrader()" type="button" class="btn btn-primary btn mb-2 mr-2"><em
+                    class="glyphicon glyphicon-transfer"></em> Refresh </button>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Your Trading Account</h5>
+                    <p class="card-text">Name : <span *ngIf="trader1">{{trader1.nameTrader}}</span></p>
+                    <p class="card-text">Balance IDR : <span *ngIf="trader1">{{trader1.balance | currency:"IDR":"Rp. "}}</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="idBe">
+                  <div class="card">
+                    <div class="card-header text-center">
+                      List Trader
+                    </div>
+                    <div class="card-body"> 
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Id Trader</th>
+                                <th scope="col">Name Trader</th>
+                                <th scope="col">Cif</th>
+                                <th scope="col">Balance</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let list of traders">
+                              <tr>
+                                <th scope="row">{{list.idTrader}}</th>
+                                <td>{{list.nameTrader}}</td>
+                                <td>{{list.customer.cif}}</td>
+                                <td>{{list.balance}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<app-trans-to-acc></app-trans-to-acc>
+<app-regis-trader></app-regis-trader>

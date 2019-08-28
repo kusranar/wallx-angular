@@ -1,0 +1,181 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-header text-center">
+          <h4>TOP-UP ACCOUNT</h4>
+        </div>
+        <div class="card-body">
+          <div class="card-deck">
+            <div class="card">
+              <img src="../../../assets/galery/gl8.jpg" class="card-img-top" alt="transfer">
+              <div class="card-body">
+              </div>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#topupAccModal"><em
+                  class="glyphicon glyphicon-plus"></em> TopUp Account</button>
+              <table class="table table-borderless" style="width: 600px">
+                <thead>
+                  <tr>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Cashtag</th>
+                    <th scope="col">Open Date</th>
+                    <th scope="col">Cif</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let list of accounts">
+                  <tr>
+                    <th scope="row">{{list.accountNumber}}</th>
+                    <td>{{list.cashtag}}</td>
+                    <td>{{list.openDate | date}}</td>
+                    <td>{{list.customer.cif}}</td>
+                    <td>{{list.balance | currency:"IDR":"Rp. "}}</td>
+                    <td>
+                      <button type="button" (click)="getData(list)" class="btn btn-primary"
+                        title="Transaction History"><em class="glyphicon glyphicon-zoom-in" data-toggle="modal"
+                          data-target="#historyByAccModal"></em></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="topupAccModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Topup To Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="topUpAccGroup">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="accountNumber">Account Number </label>
+              <input type="text" class="form-control" [(ngModel)]="accountNumber" id="accountNumber"
+                formControlName="accountNumber" placeholder="accountNumber">
+            </div>
+            <div class="col-md-12">
+              <label for="amount">Amount </label>
+              <input type="text" class="form-control" [(ngModel)]="amount" id="amount" formControlName="amount"
+                placeholder="amount">
+            </div>
+          </div>
+          <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+            <button type="button" [disabled]="!topUpAccGroup.valid" class="btn btn-primary" (click)="getAccount()"
+              data-toggle="modal" data-target="#confrimeModal" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal   bd-example-modal-sm" id="confrimeModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Account Number Received</th>
+              <th scope="col">Cashtag</th>
+              <th scope="col">Cif</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{accountNumber}}</th>
+              <td><span *ngIf="account1">{{account1.cashtag}}</span></td>
+              <td><span *ngIf="account1">{{account1.customer.cif}}</span></td>
+              <td>{{amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="TopupAcc()" class="btn btn-primary" data-dismiss="modal">Confrim</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="historyByAccModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="margin-bottom: 10px">
+          <div class="card-header text-center">
+            <h4>History Transaction</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-deck">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id Transaction</th>
+                        <th scope="col">Account Number Credit</th>
+                        <th scope="col">Account Number Debit</th>
+
+                        <th scope="col">Description</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Transaction Type</th>
+                        <th scope="col">Id Bank</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let historyy of transs">
+                      <tr>
+                        <th scope="row">{{historyy.idTransaction}}</th>
+                        <td>{{historyy.accountDebit}}</td>
+                        <td>{{historyy.accountCredit}}</td>
+                        <td>{{historyy.description}}</td>
+                        <td>{{historyy.date}}</td>
+                        <td>{{historyy.amount}}</td>
+                        <td>{{historyy.transactionType.description}}</td>
+                        <td>{{historyy.bank.name}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

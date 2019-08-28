@@ -1,0 +1,189 @@
+<div class="d-flex bd-highlight">
+  <div class="p-2 w-100 bd-highlight img">
+    <div class="card" style="margin-top: 47%; ">
+      <div class="card-header text-center">
+        <h3>Galery</h3>
+      </div>
+      <div class="d-flex align-items-end card-body">
+        <!--Carousel Wrapper-->
+        <div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2 "
+          data-ride="carousel">
+          <!--Controls-->
+          <div class="controls-top">
+            <a class="black-text" href="#multi-item-example" data-slide="prev"><em
+                class="fas fa-angle-left fa-3x pr-3"></em></a>
+            <a class="black-text" href="#multi-item-example" data-slide="next"><em
+                class="fas fa-angle-right fa-3x pl-3"></em></a>
+          </div>
+          <!--/.Controls-->
+
+          <!--Slides-->
+          <div class="carousel-inner" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl1.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl2.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl3.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl4.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+            </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl5.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl6.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl7.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="img-fluid" src="../../assets/galery/gl8.jpg" alt="Card image cap">
+                </div>
+              </div>
+
+            </div>
+            <!--/.Second slide-->
+
+          </div>
+          <!--/.Slides-->
+
+        </div>
+        <!--/.Carousel Wrapper-->
+      </div>
+    </div>
+
+
+  </div>
+  <div class="p-2 flex-shrink-1 bd-highlight">
+    <div class=" card" style="width: 400px;">
+      <div class="card-header text-center">
+        <h3>Register Customer</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerGroup" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="idCard">Id Card*</label>
+              <input type="text" class="form-control" id="idCard" formControlName="idCard" placeholder="Id Card">
+              <button (click)="check_id()" type="button" class="btn btn-info btn-sm">Check Id Card</button>
+              <small><label class="ml-2" *ngIf="inValid1" style="color: red"> X ID CARD Is Registered</label></small>
+              <small><label class="ml-2" *ngIf="valid1" style="color: green"><em class="glyphicon glyphicon-ok"></em>ID CARD is Valid </label></small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputGender">Gender*</label>
+              <select id="inputGender" class="form-control" formControlName="gender">
+                <option value="pria">Pria</option>
+                <option value="wanita">Wanita</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name*</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                placeholder="First Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Last Name*</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="userName">Username*</label>
+              <input type="text" class="form-control" id="userName" formControlName="username" placeholder="User Name">
+              <button (click)="check_username()" type="button" class="btn btn-info btn-sm">Check Id Username</button>
+              <small><label class="ml-2" *ngIf="inValid2" style="color: red"> X Username Is Registered</label></small>
+              <small><label class="ml-2" *ngIf="valid2" style="color: green"><em class="glyphicon glyphicon-ok"></em>Username is Valid </label></small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="password">Password*</label>
+              <input type="password" class="form-control" id="password" formControlName="password"
+                placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="birthDate">Birth Date*</label>
+            <input type="date" class="form-control" id="birthDate" formControlName="birthDate" placeholder="birth Date">
+          </div>
+          <div class="form-group">
+            <label for="mother">Mother*</label>
+            <input type="text" class="form-control" id="mother" formControlName="mother" placeholder="Mother">
+          </div>
+          <div class="form-group">
+            <label for="address">Address*</label>
+            <textarea class="form-control" id="address" formControlName="address" placeholder="Address"></textarea>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="occupation">Occupation*</label>
+              <input type="text" class="form-control" id="occupation" formControlName="occupation"
+                placeholder="Occupation">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputSalary">Salary*</label>
+              <select id="inputSalary" class="form-control" formControlName="salary">
+
+                <option value="< Rp.5.000.000.00">
+                  < Rp.5.000.000.00</option> <option value="> Rp.5.000.000.00 < Rp.10.000.000.00">> Rp.5.000.000.00 <
+                      Rp.10.000.000.00</option> <option value="> Rp.10.000.000.00">> Rp.10.000.000.00
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="phone">Phone*</label>
+              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone">
+            </div> 
+            <div class="form-group col-md-6">
+              <label for="email">Email*</label>
+              <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
+            </div>
+          </div>
+          <div id="register-link" class="text-left" style="margin-bottom: 19px">
+            <button type="submit" [disabled]="!registerGroup.valid" class="btn btn-primary">Register</button>
+            &nbsp;
+            <button type="Cancel" routerLink="/login" class="btn btn-danger">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

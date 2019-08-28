@@ -1,0 +1,52 @@
+<!-- Sidebar Holder -->
+<div class="content">
+  <nav id="sidebar">
+    <div (click)="show()" class="navbar-header" style="position: absolute; left: 250px;">
+      <button type="button" id="sidebarCollapse" class="btn btn-secondary navbar-btn"
+        style="width: 24px; height: 50px;">
+        <em *ngIf="!togle" class="glyphicon glyphicon-chevron-left"></em>
+        <em *ngIf="togle" class="glyphicon glyphicon-chevron-right"></em>
+      </button>
+    </div>
+    <ul class="list-unstyled"> 
+      <div class="sidebar-header">
+        <h3> <em class=""></em> Profile</h3>
+        <p>
+          Welcome Admin 
+        </p>
+        <div>
+          <button type="button" (click)="logout()" class="btn btn-outline-danger btn-block">Logout</button>
+        </div>
+      </div>
+      <li>
+        <a routerLink="/cust/dash"><em class="glyphicon glyphicon-home"></em> Dashboard Admin</a>
+      </li>
+      <li>
+        <a routerLink="/admin/update"> <em class="glyphicon glyphicon-briefcase"></em> Update Currency</a>
+      </li>
+      <li>
+        <a routerLink="/admin/home"> <em class="glyphicon glyphicon-briefcase"></em> Add Wallet Type</a>
+      </li>
+      <li> 
+        <a routerLink="/admin/trans"> <em class="glyphicon glyphicon-briefcase"></em> Account</a>
+      </li>
+      <li> 
+          <a routerLink="/trader/home"> <em class="glyphicon glyphicon-briefcase"></em> Trader</a>
+        </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default  navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><img src="../../assets/logo2.png" class="rounded float-right" alt="" style="width: 200px"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</div>

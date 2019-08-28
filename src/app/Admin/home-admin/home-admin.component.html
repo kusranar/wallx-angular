@@ -1,0 +1,72 @@
+<div id="content" style="margin-top: 150px; position: absolute">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="card" style="margin-bottom: 10px">
+                <div class="card-header text-center">
+                    <h4>Wallet</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="../../../assets/galery/gl5.jpg" class="card-img-top" alt="transfer">
+                            <div class="card-body">
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary btn" data-toggle="modal"
+                                data-target="#addWallModal"><em class="glyphicon glyphicon-plus"></em> Add
+                                Wallet</button>
+                            <table class="table table-borderless" style="width: 600px">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID Status Type</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Open Date</th>
+                                    </tr>
+                                </thead>  
+                                <tbody *ngFor="let list of walletTypes">
+                                    <tr>
+                                        <th scope="row">{{list.idWalletType}}</th>
+                                        <td>{{list.description}}</td>
+                                        <td>{{list.openDate | date}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal   bd-example-modal-sm" id="addWallModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Wallet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addWallGroup">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="description">Description </label>
+                            <input type="text" class="form-control" id="description" formControlName="description"
+                                placeholder="description">
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+                        <button type="button" (click)="add()" [disabled]="!addWallGroup.valid"
+                            class="btn btn-primary" data-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

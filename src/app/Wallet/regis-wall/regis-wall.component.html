@@ -1,0 +1,40 @@
+<!-- Modal  --> 
+<div class="modal   bd-example-modal-sm" id="regisWallModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">  
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="exampleModalLabel">Register Wallet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="regisWallGroup">
+          <div class="form-group">
+            <div class="col-md-12"> 
+              <label for="accountNumber">Choose account</label>
+              <select class="form-control" id="accountNumber" name="accountNumber" formControlName="accountNumber">
+                <option>--- Cashtag Account ---</option>
+                <option *ngFor="let list of accounts" [value]="list.accountNumber">{{list.cashtag}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12"> 
+              <label for="sel1">Choose Wallet</label>
+              <select class="form-control" id="idWalletType" name="idWalletType" formControlName="idWalletType">
+                <option>--- Wallet ---</option>
+                <option *ngFor="let list of walletTypes" [value]="list.idWalletType">{{list.description}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: left; margin-left: 17px">
+        <button type="button" (click)="regisWall()" [disabled]="!regisWallGroup.valid" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
